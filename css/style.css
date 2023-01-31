@@ -1,0 +1,466 @@
+:root { /* estos son los custom properties, se usan como tipo variables para declararlas en cualquier parte del doc
+    por ejemplo en el body "body { var:(--fuentePrincipal); } */
+    --fuentePrincipal: 'Roboto', sans-serif;
+    --fuenteSecundaria: 'Lato', sans-serif;
+
+    --primario: #1073ba;
+    --secundario: #00da55;
+    --gris: #3b3b3b;
+    --blanco: #ffffff;
+    --negro: #1f1e1e;
+    --grisClaro: #e1e1e1;
+
+    --separacion: 5rem;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* esto lo que hace es convertir 1REM = 10PX */
+}                       /* el HTML Y *, nos sirve para hacer que no crezcan las cajas, es como un "HACK", que nos facilita
+la creacion de nuestra pagina */
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem; /* gracias al porcentaje de font size en HTML, esto significa 16PX */
+    line-height: 1.5;
+}
+
+/* Globales */
+
+.contenedor {
+    max-width: 120rem; /* esto va a medir maximo 1200PX, no pasara es cifra */
+    width: 90%; /* esto singifica que va a tomar el 90% de lo que haya disponible si es menos de 1200px*/
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-weight: 900;
+    font-family: var(--fuenteSecundaria);
+    margin: calc(var(--separacion) / 2 ) 0; /* esto significa 2.5 rem (ARRIBA Y ABAJO) y 0 */
+}
+
+h1 {
+    font-size: 4.4rem;
+}
+
+h2 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto; /* este nos sirve para que en MOBILE se ajuste automaticamente a la altura y quede bien */
+}
+
+/* Utilidades */
+
+.text-center {
+    text-align: center;
+}
+
+/* Degradados */
+
+.degradado-verde {
+    color: transparent; /* aqui habiamos declarado que en todo el HEADER el color iba a ser BLANCO, entonces lo cancelamos
+    diciendo que el color sera transparente */
+    background: linear-gradient(to right, var(--primario) 0%, var(--secundario) 100%); /* aqui le decimos el orden que va hacia la 
+    derecha y empieza con el color primario del 0% y luego el secundario al 100% */
+    background-clip: text; /* aqui le decimos que el color se vaya al texto y no al fondo */
+    -webkit-background-clip: text; /* en algunos navegadores no sera suficiente con solo ponerle background-clip, puedes
+    checar en la pagina CAN I USE, y ver que algunos se podran con el codigo de WEBKIT, entonces aqui escribimos esa linea
+    para activarlo */
+}
+
+/* Header */
+.header {
+    background-color: var(--negro);
+    padding: calc( var(--separacion) * 3) 0;
+    color: var(--blanco);
+}
+
+
+@media (min-width: 768px) { 
+    .contenido-header {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.texto-header {
+    text-align: center;
+    padding-top: var(--separacion)
+}
+
+.texto-header p {
+    margin: 0;
+}
+
+@media (min-width: 768px) { 
+    .texto-header {
+        text-align: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+    }
+}
+
+.tagline-producto {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.nombre-producto {
+    font-size: 6rem;
+    margin: 0;
+}
+
+@media (min-width: 768px) { 
+    .nombre-producto {
+        font-size: 10rem;
+        line-height: 1; /* el line height nos sirve para que solo se ajuste al TEXTO y no agarre mas espacio ARRIBA Y ABAJO */
+    }
+}
+
+.precio-producto span {
+    font-size: 6rem;
+    font-weight: 900;
+}
+
+/* Iconos */
+
+.contenedor {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+
+@media (min-width: 768px) { 
+    .iconos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 5rem;
+    }
+}
+
+.icono {
+    display: flex;
+    flex-direction: column; /* para centrar la imagen usamos estas 3 lineas, o tambien se pudo haber puesto en .icono img un
+    margin 0 auto, depende de como lo quieras escribir */
+    align-items: center;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.icono p {
+    margin: 0;
+}
+
+.icono img {
+    width: 10rem;
+}
+
+.icono h3 {
+    color: var(--primario);
+    text-transform: uppercase;
+}
+
+/* Sobre los TechPro */
+
+.sobre-tech { /* MOVIMOS EL BACKGROUND IMAGE ABAJO */
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+}
+
+.notavif.notwebp .sobre-tech {
+    background-image: linear-gradient(to bottom, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.jpg); /* usamos
+    2 puntos para dar un paso atras a la carpeta y seleccionar la otra carpeta IMG */
+    /* aqui podemos jugar en donde se posiciona el fondo AZUL, cambiando el TO RIGHT, TO LEFT, TO BOTTOM para asi despues
+    darle un mejor estilo al GRID */
+}
+
+.webp .sobre-tech{
+    background-image: linear-gradient(to bottom, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.webp); 
+}
+
+.avif .sobre-tech{
+    background-image: linear-gradient(to bottom, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.avif); 
+}
+
+@media (min-width: 768px) { 
+    .sobre-tech {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%, cover;
+    }
+    .notavif.notwebp .sobre-tech{
+        background-image: linear-gradient(to left, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.jpg);
+    }
+    .webp .sobre-tech{
+        background-image: linear-gradient(to left, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.webp);
+    }
+    .avif .sobre-tech{
+        background-image: linear-gradient(to left, transparent 50%, var(--primario) 0% ), url(../img/imagen-mujer.avif);
+    }
+}
+
+@media (min-width: 2100px) { 
+    .sobre-tech {
+        background-size: 100%, 210rem; /* este MQ lo pusimos porque en dispositivos 4K hay una separacion y hay que arreglarlo */
+        background-position: right;
+    }
+}
+
+.sobre-tech-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: var(--separacion);
+}
+
+@media (min-width: 768px) { 
+    .sobre-tech-grid {
+        display: grid;
+        grid-template-rows: unset; /* debemos desactivar los rows porque luego en web luce como si tuvieramos rows, se queda como
+        antes dandonos mas espacio en filas */
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 4rem;
+    }
+}
+
+.texto-sobre-tech {
+    grid-row: 2 / 3;
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.texto-sobre-tech h2 {
+    font-size: 4rem;
+}
+
+.texto-sobre-tech p {
+    font-size: 2rem;
+    line-height: 2; /* nos sirve para que haya un interlineado y mas facil de leer el parrafo */
+}
+
+/* MAIN Modelos */
+
+.modelos{
+    padding: var(--separacion) 0;
+}
+
+.header-modelos{
+    font-size: 6rem ;
+}
+
+.listado-modelos{
+    display: flex;
+    flex-direction: column; /* esto para que en MOBILE se muestren hacia abajo en columna */
+}
+
+@media (min-width: 992px) { 
+    .listado-modelos{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 4rem;
+        row-gap: 3rem;
+    }
+}
+
+.modelo {
+    background-color: var(--grisClaro);
+    margin-bottom: 2rem;
+    padding-left: 4rem;
+    color: var(--primario);
+    border-radius: 2rem;
+    min-height: 20rem; /* para que la caja tenga como minimo esa altura */
+    background-size: 15rem; /* este tambien puede ir en cada uno de los modelos(x,y,z) pero para hacer mas simple
+    el codigo lo ponemos aqui */
+    display: flex;
+    flex-direction: column; /* pusimos esto para centrar el texto */
+    justify-content: center;
+    transition-property: transform background-size; /* tenemos que poner estas 2 lineas de codigo para decirle a que 
+    se le va a aplicar la propiedad de transision, en este caso a TRANSFORM y a BACKGROUND-SIZE, y le decimos cuanta duracion */
+    transition: .3s;
+}
+
+.modelo:hover{ /* despues nos vamos al HOVER */
+    transform: scale(1.1); /* el 1.1 significa que crecera un 10% mas */
+    background-size: 25rem; /* aumentara su tamaño */
+}
+
+@media (min-width: 768px) { 
+    .modelo{
+        margin-bottom: 0;
+    }
+}
+
+.modelo:last-child{ /* ponemos esto porque el ultimo es el mas caro y queremos que luzca diferente */
+    margin-bottom: 0; /* tenia un margin adicional por la clase .modelo entonces este ultimo no queremos que tenga un margin
+    bottom */
+    background-color: var(--primario);
+    color: var(--blanco);
+
+    /* AQUI TAMBIEN PUDIMOS USAR .MODELO-Z PARA AGREGAR EL COLOR Y BACKGROUND COLOR PERO APROVECHAMOS QUE HABIAMOS CREADO 
+    ESTA PSEUDOCLASE */
+}
+
+.modelo h3 {
+    font-size: 2.4rem;
+}
+
+.modelo .precio {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 0;
+    margin-top: .5rem;
+}
+
+.modelo-x{
+    background-image: url(../img/modelo-x.svg); /* en cada uno de los modelos agregamos la imagen que tendra la caja */
+    background-repeat: no-repeat;
+    background-position: 90% center; /* primero va en X, luego en Y */
+    /* EL REPEAT Y EL BACKGROUND POSITION LO PUDIMOS TAMBIEN HABER PUESTO EN .MODELO */
+}
+
+.modelo-y{
+    background-image: url(../img/modelo-y.svg);
+    background-repeat: no-repeat;
+    background-position: 90% center; /* primero va en X, luego en Y */
+}
+
+.modelo-z {
+    background-image: url(../img/modelo-z.svg);
+    background-repeat: no-repeat;
+    background-position: 90% center; /* primero va en X, luego en Y */
+}
+
+@media (min-width: 992px) { 
+    .modelo-z{
+        background-size: 25rem;
+        grid-row: 1/3;
+        grid-column: 2/3;
+    }
+
+    .modelo-z h3{
+        font-size: 4rem;
+    }
+
+    .modelo-z .precio{
+        font-size: 6rem;
+    }
+}
+
+/* NewsLetter */
+
+.newsletter {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%, 72rem;
+}
+
+.notavif.notwebp .newsletter{
+    background-image: linear-gradient(to bottom, transparent 50%, var(--blanco) 0%), url(../img/newsletter.jpg);
+}
+
+.webp .newsletter{
+    background-image: linear-gradient(to bottom, transparent 50%, var(--blanco) 0%), url(../img/newsletter.webp);
+}
+
+.avif .newsletter{
+    background-image: linear-gradient(to bottom, transparent 50%, var(--blanco) 0%), url(../img/newsletter.avif);
+}
+@media (min-width: 768px) { 
+    .newsletter{
+        background-image: linear-gradient(to right, transparent 50%, var(--blanco) 0%), url(../img/newsletter.jpg);
+        background-position: left; /* center, -10rem 3rem; con esto podemos moverlo en X y Y la imagen NO MAMES ES MAS SENCILLO
+        ASI UBICAS MEJOR EN DONDE SE ENFOQUE LA IMAGEN */
+        background-size: 100%, auto;
+        background-repeat: no-repeat;
+        margin-left: 5rem;
+    }
+    .notavif.notwebp .newsletter {
+        background-image: linear-gradient( to right, transparent 50%, var(--blanco) 0% ), url(../img/newsletter.jpg) ;
+        margin-left: 5rem;
+    }
+    .webp .newsletter {
+        background-image: linear-gradient( to right, transparent 50%, var(--blanco) 0% ), url(../img/newsletter.webp) ;
+        margin-left: 5rem;
+    }
+    .avif .newsletter {
+        background-image: linear-gradient( to right, transparent 50%, var(--blanco) 0% ), url(../img/newsletter.avif) ;
+        margin-left: 5rem;
+    }
+}
+
+@media (min-width: 2100px) { 
+    .newsletter{
+        background-size: 100%, 150rem;
+    }
+}
+.contenido-newsletter{
+    display: grid;
+    grid-template-rows: repeat(2, 30rem);
+    gap: var(--separacion);
+}
+
+@media (min-width: 768px) { 
+    .contenido-newsletter{
+        grid-template-rows: unset;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10rem;
+    }
+}
+
+.texto-newsletter{
+    grid-row: 2/3;
+}
+
+@media (min-width: 768px) { 
+    .texto-newsletter{
+        grid-row: unset;
+        grid-column: 2/3;
+    }
+}
+
+.formulario input[type="text"] {
+    width: 100%;
+    padding: 1rem;
+}
+
+.formulario input[type="submit"] {
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--primario);
+    color: var(--blanco);
+    font-weight: 300;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border: none;
+}
+
+/* Footer */
+
+.footer p{
+    text-align: center;
+    font-family: var(--fuenteSecundaria);
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: var(--primario);
+    padding: 3rem 0;
+}
+
+
